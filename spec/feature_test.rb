@@ -1,5 +1,6 @@
 require './lib/gilded_rose.rb'
 require './lib/item.rb'
 
-new_item = Item.new("foo", 0, 0)
-p new_item.to_s
+items = [Item.new("Aged Brie", 10, 10)]
+GildedRose.new(items).update_quality()
+p items.to_s

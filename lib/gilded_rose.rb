@@ -4,34 +4,61 @@ class GildedRose
     @items = items
   end
 
+def backstage_pass?(item)
+  item.name == "Backstage passes to a TAFKAL80ETC concert"
+end
+
+def backstage_pass_quality_rules(item)
+  if item.sell_in < 11
+    increase_quality(item)
+  end
+  if item.sell_in < 6
+    increase_quality(item)
+  end
+end
+
+def special_item?(item)
+  item.name == "Aged Brie" || item.name == "Backstage passes to a TAFKAL80ETC concert"
+end
+
+def legendary_item?(item)
+  item.name == "Sulfuras, Hand of Ragnaros"
+end
+
+def regular_item?(item)
+ return true unless special_item?(item) == true || legendary_item?(item) == true
+end
+
+def increase_quality(item)
+  if item.quality < 50
+    item.quality += 1
+  end
+end
+
+def reduce_quality(item)
+  if item.quality > 0
+    item.quality -= 1
+  end
+end
+
   def update_quality()
     @items.each do |item|
-      if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
-        if item.quality > 0
-          if item.name != "Sulfuras, Hand of Ragnaros"
-            item.quality = item.quality - 1
-          end
-        end
-      else
-        if item.quality < 50
-          item.quality = item.quality + 1
-          if item.name == "Backstage passes to a TAFKAL80ETC concert"
-            if item.sell_in < 11
-              if item.quality < 50
-                item.quality = item.quality + 1
-              end
-            end
-            if item.sell_in < 6
-              if item.quality < 50
-                item.quality = item.quality + 1
-              end
-            end
-          end
-        end
+      if regular_item?(item)
+        reduce_quality(item)
       end
+
+      if special_item?(item)
+        increase_quality(item)
+      end
+
+      if backstage_pass?(item)
+        backstage_pass_quality_rules(item)
+      end
+
       if item.name != "Sulfuras, Hand of Ragnaros"
         item.sell_in = item.sell_in - 1
       end
+
       if item.sell_in < 0
         if item.name != "Aged Brie"
           if item.name != "Backstage passes to a TAFKAL80ETC concert"
