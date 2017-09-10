@@ -17,7 +17,7 @@ describe GildedRose do
     end
 
     it 'the quality of items is lowered by one' do
-      items = [Item.new("foo", 1, 10)]
+      items = [Item.new("foo", 2, 10)]
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq 9
     end
@@ -77,7 +77,7 @@ describe GildedRose do
 
     context 'Backstage passes to a TAFKAL80ETC concert' do
       it 'quality increases by one as its SellIn value approaches' do
-        items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 11, 10)]
+        items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 12, 10)]
         GildedRose.new(items).update_quality()
         expect(items[0].quality).to eq 11
       end
