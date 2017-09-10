@@ -1,4 +1,22 @@
 # gilded-rose-kata-ruby
+
+A two day tech test to attempt the Gilded Rose kata in Ruby. The aim is to practice good design in the language of your choice. Refactor the code in such a way that adding the new "conjured" functionality is easy.
+
+## Approach to the challenge
+
+I began by writing RSpec tests to capture the existing functionality of the code before attempting to change anything.
+
+My first attempt to change the conditionals quickly broke all the tests so I changed my approach and refactored out very small chunks of code into separate methods, testing all the time to keep on green.
+
+I noticed some duplication in the reduction of the sell in date and increasing/decreasing quality so I wrote separate methods for those.
+
+I was able to reduce the main conditional to a couple of lines using this approach and got to a point where it would be easy to implement the conjured items code. However, I was not confident that the code as refactored was open for extension but closed for modification so I viewed [Sandi Metz's](https://www.youtube.com/watch?v=8bZh5LMaSmE) approach to the challenge.
+
+I refactored my code in the same way but I did not implement Sandi's approach of creating new classes for each item as the rules state that you cannot touch the item class.
+
+I am now moving on to my next project but I will consider revisiting this challenge in the future and attempt to refactor it further and implement it in an object oriented way.
+
+
 ======================================
 Gilded Rose Requirements Specification
 ======================================
